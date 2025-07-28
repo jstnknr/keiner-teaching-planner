@@ -1,29 +1,102 @@
-html, body {
+/* styles/globals.css */
+
+/* 1. Font declarations */
+@font-face {
+  font-family: 'HelveticaBold';
+  src: url('/fonts/Helvetica-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FuturaCondensed';
+  src: url('/fonts/Futura-CondensedMedium.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 2. CSS variables */
+:root {
+  --accent-color: #7BABDA;
+  --text-color: #333333;
+  --bg-color: #F9F9F9;
+}
+
+/* 3. Global resets & base styles */
+* { box-sizing: border-box; }
+body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
+  font-family: 'FuturaCondensed', Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+a { color: var(--accent-color); text-decoration: none; }
+h1, h2, h3, h4 {
+  font-family: 'HelveticaBold', Arial, sans-serif;
+  margin: 0;
 }
 
+/* 4. Layout grid & responsiveness */
 .container {
-  max-width: 1000px;
-  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 1.5rem;
   padding: 2rem;
+  width: 100%;
+  margin: 0 auto;
+}
+/* Tablet */
+@media (max-width: 2024px) {
+  .container {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+  aside {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1.5rem;
+  }
+}
+/* Mobile */
+@media (max-width: 640px) {
+  .container {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
 }
 
-h1 {
-  text-align: center;
-}
+/* 5. Page-specific styles */
+h1 { text-align: center; }
+ul { list-style: none; padding: 0; }
 
-ul {
-  list-style: none;
-  padding: 0;
-}
-
+/* .calendar-wrapper should fill its grid cell */
 .calendar-wrapper {
+  width: 100%;
   margin-top: 2rem;
-  background: white;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
 }
+
+/* 6. Button & link styles */
+button, .btn {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-family: 'HelveticaBold', Arial, sans-serif;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+button:hover, .btn:hover {
+  background: #6a96c0; /* darker shade for hover */
+}
+
