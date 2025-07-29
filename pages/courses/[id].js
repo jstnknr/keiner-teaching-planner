@@ -1,3 +1,4 @@
+// pages/courses/[id].js
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
@@ -13,7 +14,6 @@ export default function CoursePage() {
   const course = courses.find(c => c.id === id) || {};
   const courseLessons = lessons.filter(l => l.courseId === id);
 
-  // update only this course’s lessons on drop
   function handleCourseDrop(updatedEvents) {
     const other = lessons.filter(l => l.courseId !== id);
     const mapped = updatedEvents.map(evt => ({
@@ -23,13 +23,23 @@ export default function CoursePage() {
     setLessons([...other, ...mapped]);
   }
 
+  const handleDeleteLesson = (lessonId) => {
+    setLessons(lessons.filter(l => l.id !== lessonId));
+  };
+
   return (
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
         {/* Lessons sidebar */}
         <aside className="lg:col-span-1 p-4 border-r lg:border-b-0 border-b">
           <h2 className="text-lg font-semibold mb-2">Lessons</h2>
-          <LessonList lessons={courseLessons} />
+          <LessonList
+            lessons={courseLessons}
+            onEdit={lesson => {
+              router.push(`/courses/${id}/new-lesson?edit=${lesson.id}`);
+            }}
+            onDelete={handleDeleteLesson}
+          />
           <Link
             href={`/courses/${id}/new-lesson`}
             className="mt-4 inline-block px-3 py-1 bg-green-500 text-white rounded"
@@ -46,7 +56,6 @@ export default function CoursePage() {
               Back to Dashboard
             </Link>
           </div>
-          {/* Pass our drop handler */}
           <Calendar lessons={courseLessons} onUpdate={handleCourseDrop} />
         </main>
       </div>
