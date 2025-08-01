@@ -5,7 +5,6 @@ import styles from './Header.module.css';
 export default function Header({ onLogin }) {
   return (
     <header className={styles.header}>
-      {/* Wrap logos in Link to “/” */}
       <Link href="/" className={styles.logoGroup}>
         <Image
           src="/assets/plnrLogo.png"
@@ -20,16 +19,6 @@ export default function Header({ onLogin }) {
           height={40}
         />
       </Link>
-
-      {/* Login button */}
-      <button onClick={onLogin} className={styles.loginBtn}>
-        <Image
-          src="/assets/loginButtonSymbol.png"
-          alt="Login"
-          width={24}
-          height={24}
-        />
-      </button>
     </header>
   );
 }
