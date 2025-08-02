@@ -16,7 +16,7 @@
 
 /* 2. CSS variables */
 :root {
-  --accent-color: #7BABDA;
+  --accent-color: #1081ec;
   --text-color: #333333;
   --bg-color: #F9F9F9;
 }
@@ -97,6 +97,6 @@ button, .btn {
   transition: background 0.2s;
 }
 button:hover, .btn:hover {
-  background: #6a96c0; /* darker shade for hover */
+  background: #1561a9; /* darker shade for hover */
 }
 
