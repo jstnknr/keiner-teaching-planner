@@ -100,3 +100,12 @@ button:hover, .btn:hover {
   background: #1561a9; /* darker shade for hover */
 }
 
+/* ensure focus outlines are visible */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus {
+  outline: 3px solid #7BABDA;
+  outline-offset: 2px;
+}
